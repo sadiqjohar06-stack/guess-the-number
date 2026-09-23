@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guess the Number</title>
+
+    <style>
+        body {
+            background-color: lightblue;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding-top: 80px;
+        }
+
+        h1 {
+            font-size: 40px;
+        }
+
+        input {
+            font-size: 20px;
+            padding: 10px;
+            width: 180px;
+        }
+
+        button {
+            font-size: 18px;
+            padding: 10px 20px;
+            margin: 10px;
+            cursor: pointer;
+        }
+
+        #result {
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        #count {
+            font-size: 18px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>🎯 GUESS THE NUMBER</h1>
+
+    <p>Guess a number between 1 and 100</p>
+
+    <input id="guess" type="number" min="1" max="100" placeholder="Your guess">
+
+    <br>
+
+    <button onclick="guessNumber()">GUESS</button>
+
+    <button onclick="playAgain()">PLAY AGAIN 🔄</button>
+
+    <p id="result">Good luck! 🍀</p>
+
+    <p id="count">Guesses: 0</p>
+
+    <script>
+        let secret = Math.floor(Math.random() * 100) + 1;
+        let guesses = 0;
+
+        function guessNumber() {
+            let input = document.getElementById("guess");
+            let number = Number(input.value);
+
+            if (number < 1 || number > 100 || !Number.isInteger(number)) {
+                document.getElementById("result").textContent =
+                    "Enter a number from 1 to 100! 🔢";
+                return;
+            }
+
+            guesses++;
+
+            document.getElementById("count").textContent =
+                "Guesses: " + guesses;
+
+            if (number === secret) {
+                document.getElementById("result").textContent =
+                    "Correct! 🎉";
+            } else if (number < secret) {
+                document.getElementById("result").textContent =
+                    "Too low! 😅";
+            } else {
+                document.getElementById("result").textContent =
+                    "Too high! 😎";
+            }
+        }
+
+        function playAgain() {
+            secret = Math.floor(Math.random() * 100) + 1;
+            guesses = 0;
+
+            document.getElementById("count").textContent =
+                "Guesses: 0";
+
+            document.getElementById("result").textContent =
+                "New number! Good luck! 🍀";
+
+            document.getElementById("guess").value = "";
+            document.getElementById("guess").focus();
+        }
+
+        document.getElementById("guess").addEventListener("keydown", function(event) {
+            if (event.key === "Enter") {
+                guessNumber();
+            }
+        });
+    </script>
+
+</body>
+</html>
