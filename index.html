@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Guess the Number</title>
+    
+}
 
     <style>
         body {
@@ -38,6 +40,12 @@
         #count {
             font-size: 18px;
         }
+        .creator {
+    margin-top: 40px;
+    font-size: 18px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
     </style>
 </head>
 
@@ -58,6 +66,9 @@
     <p id="result">Good luck! 🍀</p>
 
     <p id="count">Guesses: 0</p>
+    <p class="creator">✨ Made by Sadiq Johar ✨</p>
+
+
 
     <script>
         let secret = Math.floor(Math.random() * 100) + 1;
